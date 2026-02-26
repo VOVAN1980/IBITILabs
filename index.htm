@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBITI Labs | The Foundation of On-Chain Autonomy</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #010308;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .mono-font { font-family: 'JetBrains Mono', monospace; }
+
+        /* ================= PRELOADER (ЗОЛОТОЙ БЕНГАЛЬСКИЙ ОГОНЬ) ================= */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #010308;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+        }
+        .loader-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+        .progress-container {
+            width: 400px;
+            height: 3px;
+            background: rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        /* Эффект золотого перелива и свечения */
+        #progress-bar {
+            position: absolute;
+            top: 0; left: 0; height: 100%; width: 0%;
+            background: linear-gradient(90deg, #b45309, #f59e0b, #fef08a, #f59e0b, #b45309);
+            background-size: 200% 100%;
+            box-shadow: 0 0 15px #f59e0b, 0 0 30px #fbbf24, 0 0 50px #fef08a;
+            transition: width 0.3s ease-out;
+            animation: sparklerFlow 0.6s linear infinite;
+        }
+        @keyframes sparklerFlow {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        #progress-text {
+            margin-top: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fbbf24;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+
+        /* ================= ЖИВОЙ ЗАГОЛОВОК ================= */
+        .text-gradient-animated {
+            background: linear-gradient(to right, #38bdf8, #a855f7, #f59e0b, #38bdf8);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 6s ease-in-out infinite;
+        }
+        @keyframes textShine {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        /* ================= CANVAS (ЯРКИЙ ФОН И ПАУТИНА) ================= */
+        #canvas-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -3;
+            pointer-events: none;
+        }
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(1,3,8,0.2) 0%, #010308 100%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .section-nebula {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: breathe 10s infinite alternate ease-in-out;
+        }
+        .nebula-blue { background: #38bdf8; }
+        .nebula-purple { background: #a855f7; }
+        .nebula-gold { background: #f59e0b; }
+
+        @keyframes breathe {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.25; }
+        }
+
+        /* ================= АНИМАЦИИ ВЫЕЗДА ================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ================= МАГНИТНЫЕ КАРТОЧКИ ================= */
+        .product-wrapper {
+            position: relative;
+            display: block;
+            border-radius: 2rem;
+            z-index: 10;
+        }
+        
+        .product-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 2.5rem;
+            background: inherit;
+            filter: blur(30px);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+        .product-wrapper:hover::before { opacity: 0.4; }
+
+        .aura-blue { background: radial-gradient(circle, #38bdf8 0%, transparent 70%); }
+        .aura-purple { background: radial-gradient(circle, #a855f7 0%, transparent 70%); }
+        .aura-gold { background: radial-gradient(circle, #f59e0b 0%, transparent 70%); }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .product-wrapper:hover .glass-card::after { opacity: 1; }
+        
+        .product-wrapper:hover .glass-card {
+            transform: translateY(-20px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.9);
+        }
+
+        .card-content { position: relative; z-index: 2; }
+    </style>
+</head>
+<body class="selection:bg-sky-500 selection:text-white">
+
+    <!-- ПРЕЛОАДЕР -->
+    <div id="preloader">
+        <div class="loader-title">IBITI LABS</div>
+        <div class="progress-container"><div id="progress-bar"></div></div>
+        <div id="progress-text">SYS.BOOT[ 0% ]</div>
+    </div>
+
+    <!-- ЖИВАЯ ПАУТИНА (CANVAS) -->
+    <canvas id="canvas-bg"></canvas>
+    <div class="bg-overlay"></div>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
+        <div class="max-w-[90rem] mx-auto px-8 h-24 flex items-center justify-between">
+            <a href="#" class="text-3xl font-bold tracking-tighter flex items-center gap-4 heading-font group">
+                <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black font-extrabold shadow-[0_0_30px_rgba(255,255,255,0.4)] group-hover:scale-110 transition-transform">I</div>
+                IBITI <span class="text-white/40 font-light">Labs</span>
+            </a>
+            <div class="hidden md:flex gap-12 text-base font-medium text-white/60">
+                <a href="#vision" class="hover:text-white transition-colors">Vision</a>
+                <a href="#ecosystem" class="hover:text-white transition-colors">Ecosystem</a>
+                <a href="#partner" class="hover:text-white transition-colors">Partners</a>
+            </div>
+            <a href="#partner" class="px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                Join Network
+            </a>
+        </div>
+    </nav>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-6xl mx-auto text-center relative z-10 reveal mt-10">
+            <div class="inline-block mb-12 px-6 py-2.5 rounded-full border border-white/10 text-sm font-medium text-white/70 mono-font tracking-widest uppercase bg-white/5 backdrop-blur-md">
+                <span class="inline-block w-2.5 h-2.5 bg-sky-400 rounded-full mr-3 animate-pulse shadow-[0_0_15px_#38bdf8]"></span>
+                The Foundation of Autonomy
+            </div>
+            
+            <h1 class="text-6xl md:text-[7rem] lg:text-[9rem] font-extrabold mb-10 leading-[1.05] tracking-tighter text-white drop-shadow-2xl">
+                Infinite <br>
+                <span class="text-gradient-animated">Capabilities.</span>
+            </h1>
+            
+            <p class="text-2xl md:text-3xl text-white/50 mb-16 max-w-4xl mx-auto font-light leading-relaxed">
+                We build the immutable security layers, deterministic execution engines, and transparent assets that power the next era of DeFi.
+            </p>
+            
+            <a href="#ecosystem" class="inline-flex items-center gap-4 px-12 py-5 rounded-full bg-white text-black font-bold text-xl hover:scale-105 transition-transform duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]">
+                Explore Modules 
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- О НАС (Воздушный текст) -->
+    <section id="vision" class="py-40 px-6 relative z-10">
+        <div class="max-w-[90rem] mx-auto reveal">
+            <div class="grid lg:grid-cols-12 gap-10">
+                <div class="lg:col-span-5">
+                    <h2 class="text-sm font-bold text-sky-400 tracking-widest uppercase mono-font mb-6">01 // The Architecture</h2>
+                    <h3 class="text-5xl md:text-7xl font-bold leading-tight">Architects of<br>the Base Layer.</h3>
+                </div>
+                <div class="lg:col-span-7 lg:pt-10">
+                    <p class="text-2xl text-white/60 leading-relaxed font-light mb-10">
+                        Application developers should focus on creating amazing products, not on building foundational security from scratch.
+                    </p>
+                    <p class="text-2xl text-white/60 leading-relaxed font-light">
+                        We don't build trading bots. We build the <strong class="text-white font-medium">secure operating system</strong> that prevents AI from going rogue. We create the robust mechanics that fuel liquidity. We lay the concrete.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭКОСИСТЕМА (Огромные блоки и отступы) -->
+    <section id="ecosystem" class="relative z-10">
+        
+        <!-- MODULE 1: EPK -->
+        <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
+            <div class="section-nebula nebula-blue"></div>
+            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
+                
+                <!-- КАРТОЧКА СЛЕВА -->
+                <div class="w-full lg:w-5/12 reveal">
+                    <a href="https://www.ibiticoin.com/ibiti-web/labs" target="_blank" class="product-wrapper" style="background: #38bdf8;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/30 mb-12 shadow-[0_0_30px_rgba(56,189,248,0.2)]">
+                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="text-5xl font-bold text-white mb-4">IBITI EPK</h4>
+                                <div class="text-sky-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                                    Access Protocol <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ТЕКСТ СПРАВА -->
+                <div class="w-full lg:w-7/12 reveal delay-200">
+                    <div class="text-sky-400 mono-font text-base uppercase tracking-widest mb-6">Security Module</div>
+                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Eternal Permission Kernel.</h3>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
+                        The ultimate on-chain firewall for autonomous agents. EPK eliminates the systemic risk of infinite approvals by introducing deterministic, revocable execution policies.
+                    </p>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed">
+                        Set rolling spend limits, strict target allowlists, and instantly revoke access with a single panic switch. Built for institutional safety.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 2: APPS & AGENTS -->
+        <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
+            <div class="section-nebula nebula-purple"></div>
+            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row-reverse items-center gap-24 relative z-10">
+                
+                <!-- КАРТОЧКА СПРАВА -->
+                <div class="w-full lg:w-5/12 reveal">
+                    <a href="#" class="product-wrapper" style="background: #a855f7;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/30 mb-12 shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="text-5xl font-bold text-white mb-4">Apps & Agents</h4>
+                                <div class="text-purple-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                                    In Development <span class="animate-pulse ml-2 text-3xl">...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ТЕКСТ СЛЕВА -->
+                <div class="w-full lg:w-7/12 reveal delay-200">
+                    <div class="text-purple-400 mono-font text-base uppercase tracking-widest mb-6">Execution Module</div>
+                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Autonomous Ecosystem.</h3>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
+                        The future of DeFi and gaming is agent-driven. We are building the sandbox and execution environments where sovereign AI actors can thrive without exposing users to risk.
+                    </p>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed">
+                        Powered entirely by the EPK security layer, these applications demonstrate what is possible when intelligence meets unbreakable on-chain rules.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 3: TOKEN -->
+        <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
+            <div class="section-nebula nebula-gold"></div>
+            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
+                
+                <!-- КАРТОЧКА СЛЕВА -->
+                <div class="w-full lg:w-5/12 reveal">
+                    <a href="https://www.ibiticoin.com" target="_blank" class="product-wrapper" style="background: #f59e0b;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-amber-500/10 flex items-center justify-center text-amber-400 border border-amber-500/30 mb-12 shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="text-5xl font-bold text-white mb-4">IBITI Token</h4>
+                                <div class="text-amber-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                                    Access Portal <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ТЕКСТ СПРАВА -->
+                <div class="w-full lg:w-7/12 reveal delay-200">
+                    <div class="text-amber-400 mono-font text-base uppercase tracking-widest mb-6">Utility Module</div>
+                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">The Network Asset.</h3>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
+                        The native utility and governance engine powering the broader network. Engineered on the BNB Smart Chain with a fixed, unmintable supply.
+                    </p>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed">
+                        Designed with clean, transparent on-chain mechanics to provide deep liquidity and total alignment across all IBITI Labs modules.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- PARTNER CTA -->
+    <section id="partner" class="py-48 px-6 relative z-10 text-center border-t border-white/5 bg-[#010308]">
+        <div class="max-w-5xl mx-auto reveal">
+            <h2 class="text-6xl md:text-[6rem] font-bold mb-12">Deploy With Us.</h2>
+            <p class="text-3xl text-white/40 mb-16 font-light leading-relaxed">
+                Are you building an AI agent, DeFi automation, or a trading firm? Stop risking your treasury. Integrate EPK and launch a secure pilot today.
+            </p>
+            <a href="mailto:info@ibiticoin.com" class="inline-flex items-center justify-center px-14 py-6 rounded-full bg-white text-black font-bold text-2xl hover:scale-105 transition-transform duration-500 shadow-[0_0_60px_rgba(255,255,255,0.2)]">
+                Start a Pilot
+            </a>
+            <div class="mt-12 text-white/30 mono-font text-lg uppercase tracking-widest">
+                Direct: info@ibiticoin.com
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#000103] py-20 px-6 relative z-10">
+        <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-3xl font-bold tracking-tighter heading-font flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-black text-lg">I</div>
+                IBITI <span class="text-white/30">Labs</span>
+            </div>
+            
+            <div class="flex gap-12 text-lg">
+                <a href="https://x.com/ibiticoin" target="_blank" class="text-white/40 hover:text-white transition-colors">X (Twitter)</a>
+                <a href="https://github.com/VOVAN1980" target="_blank" class="text-white/40 hover:text-white transition-colors">GitHub</a>
+                <a href="https://t.me/IBITIcoin_chat" target="_blank" class="text-white/40 hover:text-white transition-colors">Telegram</a>
+            </div>
+            
+            <div class="text-base text-white/30 mono-font uppercase tracking-widest">
+                &copy; 2026 IBITI Labs
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        /* --- 1. ПРЕЛОАДЕР --- */
+        window.addEventListener('load', () => {
+            let progress = 0;
+            const bar = document.getElementById('progress-bar');
+            const text = document.getElementById('progress-text');
+            const preloader = document.getElementById('preloader');
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 5) + 1; 
+                if (progress > 100) progress = 100;
+                
+                bar.style.width = progress + '%';
+                text.innerText = `SYS.BOOT [ ${progress}% ]`;
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        text.innerText = "SYSTEM SECURE. INITIALIZING...";
+                        text.style.color = "#fbbf24"; // Золотой текст при 100%
+                        text.style.textShadow = "0 0 20px rgba(245, 158, 11, 0.8)";
+                        
+                        setTimeout(() => {
+                            preloader.style.opacity = '0';
+                            preloader.style.visibility = 'hidden';
+                            
+                            setTimeout(() => {
+                                document.querySelectorAll('.reveal').forEach(el => {
+                                    revealObserver.observe(el);
+                                });
+                            }, 400);
+                        }, 1000);
+                    }, 500);
+                }
+            }, 80);
+        });
+
+        /* --- 2. ПЛАВНЫЙ ВЫЕЗД ПРИ СКРОЛЛЕ --- */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -100px 0px" });
+
+        /* --- 3. РАЗМЫТИЕ НАВБАРА --- */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-[#010308]/80', 'backdrop-blur-xl', 'border-white/10');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-[#010308]/80', 'backdrop-blur-xl', 'border-white/10');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        /* --- 4. ЭФФЕКТ ФОНАРИКА ДЛЯ КАРТОЧЕК --- */
+        function handleMouseMove(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const glass = card.querySelector('.glass-card');
+            if(glass) {
+                glass.style.setProperty('--mouse-x', `${x}px`);
+                glass.style.setProperty('--mouse-y', `${y}px`);
+            }
+        }
+
+        /* --- 5. WOW-BACKGROUND: ПАУТИНА АЛГОРИТМОВ (СДЕЛАЛ ЯРЧЕ) --- */
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        const chars =['0', '1', '0x', 'ƒ', 'Δ', 'μ', '∑', 'λ'];
+        let particles =[];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 16 + 12; // Увеличил размер шрифта матрицы
+                this.char = chars[Math.floor(Math.random() * chars.length)];
+                this.baseOpacity = Math.random() * 0.5 + 0.3; // Сделал частицы намного ярче
+                this.isBlue = Math.random() > 0.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.font = `${this.size}px 'JetBrains Mono', monospace`;
+                ctx.fillStyle = this.isBlue ? `rgba(56, 189, 248, ${this.baseOpacity})` : `rgba(168, 85, 247, ${this.baseOpacity})`;
+                ctx.fillText(this.char, this.x, this.y);
+            }
+        }
+
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Отрисовка базовой фоновой сетки (СДЕЛАЛ ЯРЧЕ И ЖИРНЕЕ)
+            const cols = 20;
+            const rows = 15;
+            const spacingX = width / cols;
+            const spacingY = height / rows;
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'; // Увеличил видимость сетки
+
+            for (let y = 0; y <= rows; y++) {
+                ctx.beginPath();
+                for (let x = 0; x <= cols; x++) {
+                    const px = x * spacingX;
+                    const py = y * spacingY;
+                    const offset = Math.sin(x * 0.5 + performance.now() * 0.0005) * Math.cos(y * 0.5 + performance.now() * 0.0005) * 20;
+                    if (x === 0) ctx.moveTo(px, py + offset);
+                    else ctx.lineTo(px, py + offset);
+                }
+                ctx.stroke();
+            }
+
+            // Отрисовка лазерной паутины (СДЕЛАЛ ЯРЧЕ И ДЛИННЕЕ)
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 250) { // Нити тянутся дальше
+                        ctx.beginPath();
+                        const lineOpacity = (1 - dist / 250) * 0.5; // Сделал нити ярче
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${lineOpacity})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
