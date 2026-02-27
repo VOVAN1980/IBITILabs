@@ -86,14 +86,11 @@ IBITI Labs introduces a **permission-first execution architecture**, where auton
 
 ## Live Ecosystem
 
-🌐 IBITI Labs Umbrella 
-https://vovan1980.github.io/IBITILabs/
+🌐 IBITI Labs Umbrella --- https://vovan1980.github.io/IBITILabs/
 
-🧠 Eternal Permission Kernel (EPK) — v1  
-https://vovan1980.github.io/ibiti-epk-core/
+🧠 Eternal Permission Kernel (EPK) — v1 --- https://vovan1980.github.io/ibiti-epk-core/
 
-💱 IBITIcoin  
-https://www.ibiticoin.com
+💱 IBITIcoin --- https://www.ibiticoin.com
 
 ---
 
