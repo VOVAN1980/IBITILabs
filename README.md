@@ -27,6 +27,20 @@ IBITI Labs develops modular on-chain infrastructure enabling:
 The ecosystem combines protocol security, execution environments and network utility into a unified architecture.
 
 ---
+## Ecosystem Architecture
+
+                IBITI Labs
+                     │
+     ┌───────────────┼───────────────┐
+     │                               │
+  IBITI EPK                    IBITIcoin
+ Permission Layer              Network Asset
+     │                               │
+     └────────── Autonomous Applications ──────────┘
+                         │
+                    AI Agents
+                    DeFi Automation
+                    On-chain Execution
 
 ## Core Modules
 
