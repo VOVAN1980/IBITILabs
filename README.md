@@ -38,7 +38,8 @@ This repository is the **IBITI Labs umbrella** (landing + pointers). Core protoc
 .
 ├─ index.html          # GitHub Pages landing (root)
 ├─ README.md           # This file (umbrella overview)
-├─ assets/             # Logos / images used in README + landing
+├─ img/             # Logos / images used in README + landing
+├─ docs/
 └─ .github/            # Issue templates, security policy, etc.
 ```
 
