@@ -1,5 +1,11 @@
 # IBITI Labs
 
+![Status](https://img.shields.io/badge/status-active-success)
+![Infrastructure](https://img.shields.io/badge/type-infrastructure-blue)
+![Chain](https://img.shields.io/badge/BNB%20Chain-live-yellow)
+![License](https://img.shields.io/badge/license-open--source-lightgrey)
+![Stage](https://img.shields.io/badge/stage-early--pilot-orange)
+
 **Infrastructure layer for on-chain autonomy, secure execution and agent-safe DeFi.**
 
 IBITI Labs builds foundational blockchain infrastructure designed for the next generation of autonomous systems, AI agents and decentralized financial execution.
