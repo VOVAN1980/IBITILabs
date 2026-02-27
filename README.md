@@ -42,6 +42,10 @@ The ecosystem combines protocol security, execution environments and network uti
                     DeFi Automation
                     On-chain Execution
 
+
+
+
+
 ## Core Modules
 
 ### Eternal Permission Kernel (EPK)
