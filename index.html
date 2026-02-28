@@ -301,6 +301,27 @@
   color: rgba(255,255,255,0.45);
   font-size: 13px;
 }
+
+.ibm-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.ibm-brand img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(245,158,11,.35));
+  animation: ibmLogoPulse 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes ibmLogoPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(245,158,11,.28)); opacity: .95; }
+  50%      { transform: scale(1.06); filter: drop-shadow(0 0 26px rgba(245,158,11,.55)); opacity: 1; }
+}
     </style>
 </head>
 <body class="selection:bg-sky-500 selection:text-white">
@@ -720,5 +741,6 @@
 </body>
 
 </html>
+
 
 
