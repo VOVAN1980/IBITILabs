@@ -51,6 +51,36 @@
             overflow: hidden;
             border-radius: 4px;
         }
+
+           /* ===== PRELOADER LOGO ===== */
+.loader-logo {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 1.6rem;
+  filter: drop-shadow(0 0 22px rgba(245,158,11,0.35));
+  animation: logoPulse 2.2s ease-in-out infinite;
+}
+
+.loader-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* “перелив” через маску */
+  -webkit-mask-image: linear-gradient(110deg, rgba(0,0,0,0.35) 20%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.35) 80%);
+  -webkit-mask-size: 220% 100%;
+  -webkit-mask-position: 0% 0%;
+  animation: logoShine 2.2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes logoShine {
+  0% { -webkit-mask-position: 0% 0%; }
+  100% { -webkit-mask-position: 220% 0%; }
+}
         
         /* Эффект золотого перелива и свечения */
         #progress-bar {
@@ -199,11 +229,15 @@
 <body class="selection:bg-sky-500 selection:text-white">
 
     <!-- ПРЕЛОАДЕР -->
-    <div id="preloader">
-        <div class="loader-title">IBITI LABS</div>
-        <div class="progress-container"><div id="progress-bar"></div></div>
-        <div id="progress-text">SYS.BOOT[ 0% ]</div>
+<div id="preloader">
+    <div class="loader-logo">
+        <img src="./img/ibiti-mark.png" alt="IBITI Labs">
     </div>
+
+    <div class="loader-title">IBITI LABS</div>
+    <div class="progress-container"><div id="progress-bar"></div></div>
+    <div id="progress-text">SYS.BOOT[ 0% ]</div>
+</div>
 
     <!-- ЖИВАЯ ПАУТИНА (CANVAS) -->
     <canvas id="canvas-bg"></canvas>
@@ -599,6 +633,7 @@
 </body>
 
 </html>
+
 
 
 
