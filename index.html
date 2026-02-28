@@ -224,6 +224,83 @@
         }
 
         .card-content { position: relative; z-index: 2; }
+
+        /* ===== Contact modal (safe, isolated) ===== */
+#contactModalRoot { position: fixed; inset: 0; z-index: 999999; display: none; }
+#contactModalRoot.show { display: block; }
+#contactModalRoot .cm-backdrop { position:absolute; inset:0; background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); }
+#contactModalRoot .cm-wrap { position:relative; min-height:100%; display:flex; align-items:center; justify-content:center; padding: 24px; }
+#contactModalRoot .cm-dialog {
+  width: 100%;
+  max-width: 980px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(5,7,15,0.92);
+  box-shadow: 0 40px 140px rgba(0,0,0,0.85);
+  overflow: hidden;
+}
+#contactModalRoot .cm-inner { padding: 32px 34px; }
+#contactModalRoot .cm-top { display:flex; align-items:flex-start; justify-content:space-between; gap: 18px; }
+#contactModalRoot .cm-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+#contactModalRoot .cm-title { font-family: 'Space Grotesk', sans-serif; font-size: 46px; line-height: 1.06; font-weight: 800; margin-top: 10px; }
+#contactModalRoot .cm-sub { margin-top: 14px; color: rgba(255,255,255,0.55); font-size: 18px; line-height: 1.6; }
+#contactModalRoot .cm-close { background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 34px; line-height: 1; cursor: pointer; }
+#contactModalRoot .cm-close:hover { color: rgba(255,255,255,1); }
+
+#contactModalRoot .cm-grid { margin-top: 26px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px){ #contactModalRoot .cm-grid { grid-template-columns: 1fr 1fr; } }
+
+#contactModalRoot .cm-tile{
+  display:block;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(15,23,42,0.22);
+  border-radius: 22px;
+  padding: 18px 18px;
+  text-decoration: none;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, background .35s;
+}
+#contactModalRoot .cm-tile:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(15,23,42,0.32);
+}
+#contactModalRoot .cm-tile .t{ font-weight: 800; font-size: 20px; color: rgba(255,255,255,0.92); }
+#contactModalRoot .cm-tile .d{ margin-top: 6px; color: rgba(255,255,255,0.55); }
+
+#contactModalRoot .cm-emailbox .d { margin-bottom: 12px; }
+#contactModalRoot .cm-btn{
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  padding: 12px 14px;
+  border-radius: 999px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+#contactModalRoot .cm-btn:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.26);
+  background: rgba(255,255,255,0.10);
+}
+#contactModalRoot .cm-toast{
+  margin-top: 10px;
+  display:none;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+#contactModalRoot .cm-foot{
+  padding: 16px 34px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+}
     </style>
 </head>
 <body class="selection:bg-sky-500 selection:text-white">
@@ -636,21 +713,7 @@
 
         animate();
     </script>
+    <script src="./contact-modal.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
