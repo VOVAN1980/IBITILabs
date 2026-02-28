@@ -255,7 +255,11 @@
           <div class="ibm-header">
             <div>
               <div class="ibm-kicker">CONTACT</div>
-              <h2 class="ibm-title">Get in touch</h2>
+
+              <div class="ibm-brand">
+              <img src="img/ibiti-mark.png" alt="IBITI Labs">
+             <h2 class="ibm-title" style="margin:0;">Get in touch</h2>
+            </div>
               <p class="ibm-subtitle">Pick a channel. Fastest: Telegram / X. Formal: Email / LinkedIn.</p>
             </div>
             <button class="ibm-close" type="button" data-close="1" aria-label="Close">×</button>
