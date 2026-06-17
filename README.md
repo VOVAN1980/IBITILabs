@@ -1,10 +1,20 @@
 # IBITI Labs
 
-![Status](https://img.shields.io/badge/status-active-success)
-![Type](https://img.shields.io/badge/type-infrastructure-blue)
-![Chain](https://img.shields.io/badge/BNB%20Chain-live-yellow)
-![License](https://img.shields.io/badge/license-open--source-lightgrey)
-![Stage](https://img.shields.io/badge/stage-early--pilot-orange)
+<p align="center">
+  <img src="img/ibiti-mark.png" alt="IBITI Labs" width="200">
+</p>
+
+<p align="center"><b>Infrastructure Layer for On-Chain Autonomy</b></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/status-active-success?style=flat-square" alt="Status">
+  <img src="https://img.shields.io/badge/type-infrastructure-blue?style=flat-square" alt="Type">
+  <img src="https://img.shields.io/badge/BNB%20Chain-live-yellow?style=flat-square" alt="Chain">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/stage-early--pilot-orange?style=flat-square" alt="Stage">
+</p>
+
+---
 
 **IBITI Labs is an infrastructure layer for on-chain autonomy — secure execution, permission control, and agent-safe DeFi.**
 
@@ -12,73 +22,31 @@ We build the foundational security + execution primitives that autonomous system
 
 ---
 
-## What we build
-
-IBITI Labs develops modular on-chain infrastructure for:
-
-* **Deterministic execution** — predictable, policy-bound on-chain actions
-* **Revocable permissions** — permissions that can be limited, timed, and revoked
-* **Secure treasury interaction** — controlled spending and target restrictions
-* **Agent-safe DeFi automation** — autonomy without “blank-check approvals”
-* **Transparent utility assets** — on-chain utility designed to align ecosystem incentives
-
-**We don’t build trading bots.** We build the *permission and execution layer* that makes autonomy safe to ship.
-
----
-
-## Repository
-
-This repository is the **IBITI Labs umbrella** (landing + pointers). Core protocol work lives in dedicated repos.
-
-**Live site (GitHub Pages):** [https://vovan1980.github.io/IBITILabs/](https://vovan1980.github.io/IBITILabs/)
-
-### Layout
+## Ecosystem Architecture
 
 ```
-.
-├─ index.html          # GitHub Pages landing (root)
-├─ README.md           # This file (umbrella overview)
-├─ img/             # Logos / images used in README + landing
-├─ docs/
-└─ .github/            # Issue templates, security policy, etc.
-```
-
-### Quick start (local)
-
-If you want to preview the landing locally:
-
-```bash
-# simplest: static server
-python -m http.server 8080
-# open http://localhost:8080
-```
-
-(Any static server works: `npx serve`, VSCode Live Server, etc.)
-
----
-
-## Ecosystem architecture
-
-```
-                 IBITI Labs
-                      │
-      ┌───────────────┼───────────────┐
-      │                               │
-   IBITI EPK                       IBITIcoin
- Permission Layer                 Network Asset
-      │                               │
-      └────────── Autonomous Applications ──────────┘
-                          │
-                       AI Agents
+                     IBITI Labs
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+     IBITI EPK      IBITI Guardian    IBITIcoin
+  Permission Layer   AI Wallet &     Network Asset
+                     CEX Guard
+        │                │                │
+        └──────── Autonomous Applications ────────┘
+                         │
+                   AI Agents & Bots
                    DeFi Automation
                    On-chain Execution
 ```
 
 ---
 
-## Core modules
+## Core Modules
 
 ### 1) Eternal Permission Kernel (EPK)
+
+<img src="img/epk.png" alt="EPK" width="64" align="left" style="margin-right: 16px;">
 
 **EPK** is a permission & execution-control layer for smart accounts and autonomous agents.
 
@@ -91,25 +59,45 @@ It replaces unlimited approvals with deterministic policies:
 
 Designed for **institutional-grade safety** and practical integration.
 
-**Repo:** [https://github.com/VOVAN1980/ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core)
-**DoraHacks BUILDL:** [https://dorahacks.io/buidl/39567/](https://dorahacks.io/buidl/39567/)
+🔗 **Repo:** [ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core) · **DoraHacks:** [BUIDL #39567](https://dorahacks.io/buidl/39567/)
 
 ---
 
-### 2) Autonomous applications & agents
+### 2) IBITI Guardian — AI Wallet & CEX Guard
 
-EPK is the security substrate. On top of it we build (and enable others to build) agent-driven products such as:
+<img src="img/guardian.png" alt="IBITI Guardian" width="64" align="left" style="margin-right: 16px;">
 
-* **AI trading agents** (policy-bound execution)
-* **Automated treasury logic** (controlled spending)
-* **Autonomous DeFi interaction** (approved targets only)
-* **Agent-driven gaming systems** (rules enforced on-chain)
+**IBITI Guardian** is an AI-powered crypto wallet with voice commands, policy-protected execution, market radar, and multi-exchange trading.
 
-All applications operate under **deterministic permission policies** — autonomy without losing control.
+* 🎙️ **Voice AI (Jarvis)** — hands-free trading via Whisper STT & GPT-4o TTS
+* 🛡️ **Heuristic Policy Engine** — per-tx limits, daily budgets, price impact guards
+* 🧪 **SandboxGuard** — pre-flight RPC simulation for Web3 transactions
+* 📊 **CEX Trading** — spot market orders on MEXC, OKX, Gate.io, Binance
+* 🔐 **EPK Integration** — on-chain permission enforcement (testnet live)
+* 🤖 **Autonomous Trading** — policy engine ready, bot activation in Phase 2
+
+🔗 **Repo:** [ibiti-guardian](https://github.com/VOVAN1980/ibiti-guardian)
 
 ---
 
-### 3) IBITI Network Asset (IBITIcoin)
+### 3) DrainShield
+
+<img src="img/drainshield-lion.png" alt="DrainShield" width="64" align="left" style="margin-right: 16px;">
+
+**DrainShield** is a real-time wallet protection agent that monitors and neutralizes drain attacks, malicious approvals, and phishing contracts before they can execute.
+
+* 🔍 **Real-time monitoring** — watches pending transactions and approvals
+* 🚫 **Automatic revocation** — revokes suspicious unlimited approvals
+* 📋 **Threat intelligence** — community-sourced blacklist database
+* ⚡ **Instant alerts** — push notifications on detected threats
+
+🔗 **Repo:** [drainshield](https://github.com/VOVAN1980/drainshield)
+
+---
+
+### 4) IBITI Network Asset (IBITIcoin)
+
+<img src="img/ibiti-token.png" alt="IBITIcoin" width="64" align="left" style="margin-right: 16px;">
 
 **IBITIcoin (IBITI)** is the native utility asset supporting ecosystem coordination and liquidity alignment.
 
@@ -118,15 +106,13 @@ All applications operate under **deterministic permission policies** — autonom
 * Transparent on-chain mechanics
 * Designed for ecosystem utility integration
 
-**Website:** [https://www.ibiticoin.com](https://www.ibiticoin.com)
+🔗 **Website:** [ibiticoin.com](https://www.ibiticoin.com)
 
 ---
 
-## Why this matters
+## Why This Matters
 
-Autonomous execution is becoming the default.
-
-But today’s on-chain automation still relies on fragile patterns:
+Autonomous execution is becoming the default. But today's on-chain automation still relies on fragile patterns:
 
 * **Infinite token approvals**
 * **Uncontrolled agent execution**
@@ -136,31 +122,36 @@ IBITI Labs introduces a **permission-first execution architecture** where autono
 
 ---
 
-## Live links
+## Live Links
 
-* 🌐 **IBITI Labs (umbrella):** [https://vovan1980.github.io/IBITILabs/](https://vovan1980.github.io/IBITILabs/)
-* 🧠 **EPK v1 (docs/landing):** [https://vovan1980.github.io/ibiti-epk-core/](https://vovan1980.github.io/ibiti-epk-core/)
-* 💱 **IBITIcoin:** [https://www.ibiticoin.com](https://www.ibiticoin.com)
+| Module | Link |
+|--------|------|
+| 🌐 **IBITI Labs** (umbrella) | [vovan1980.github.io/IBITILabs](https://vovan1980.github.io/IBITILabs/) |
+| 🧠 **EPK v1** (docs) | [vovan1980.github.io/ibiti-epk-core](https://vovan1980.github.io/ibiti-epk-core/) |
+| 🛡️ **IBITI Guardian** (repo) | [github.com/VOVAN1980/ibiti-guardian](https://github.com/VOVAN1980/ibiti-guardian) |
+| 🦁 **DrainShield** (landing) | [vovan1980.github.io/drainshield](https://vovan1980.github.io/drainshield/) |
+| 💱 **IBITIcoin** | [ibiticoin.com](https://www.ibiticoin.com) |
 
 ---
 
 ## Technology
 
-* Solidity
-* Foundry
-* BNB Smart Chain
-* Smart account architecture
-* EIP-712 signing
+* Solidity · Foundry · BNB Smart Chain
+* Flutter (Dart) · OpenAI GPT-4o · Whisper
+* Smart account architecture · EIP-712 signing
 * Modular validator design
 
 ---
 
 ## Status
 
-* **IBITIcoin** — live on BNB Chain
-* **EPK** — validated on testnet
-* **Security architecture** — open source
-* **Pilot integrations** — in progress
+| Module | Status |
+|--------|--------|
+| **IBITIcoin** | ✅ Live on BNB Chain |
+| **EPK** | ✅ Validated on testnet |
+| **IBITI Guardian** | ✅ MVP — voice AI, CEX trading, policy engine |
+| **DrainShield** | 🚧 In development |
+| **Pilot integrations** | 🔄 In progress |
 
 ---
 
@@ -174,7 +165,7 @@ IBITI Labs aims to become a foundational security & execution layer for agent-dr
 
 ## Contributing
 
-We’re moving toward pilot integrations and infrastructure partnerships.
+We're moving toward pilot integrations and infrastructure partnerships.
 
 Technical discussions and collaboration proposals are welcome.
 
@@ -190,20 +181,4 @@ Technical discussions and collaboration proposals are welcome.
 
 ## License
 
-Open-source components are released under their respective repository licenses.
-
----
-
-## Maintainers’ checklist (recommended repo files)
-
-If you want this umbrella repo to look like a “top” infra project, add these files:
-
-* `LICENSE` (MIT or Apache-2.0)
-* `SECURITY.md` (security contact + disclosure process)
-* `CONTRIBUTING.md` (how to propose changes)
-* `CODE_OF_CONDUCT.md` (standard community rules)
-* `.github/ISSUE_TEMPLATE/` (bug + feature templates)
-* `.github/pull_request_template.md`
-* `assets/` (logo/OG images used by README + landing)
-
-I can generate the full contents for each file below so you can paste them into the repo as-is.
+Open-source components are released under their respective repository licenses. See [LICENSE](LICENSE) for details.
