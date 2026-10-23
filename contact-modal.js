@@ -3,7 +3,7 @@
     email: "info@ibiticoin.com",
     subject: "IBITI Labs — Partnership / Integration",
     body: "Hi IBITI Labs,%0A%0A",
-    linkedin: "https://www.linkedin.com/in/ibiticoin/",
+    linkedin: "https://www.linkedin.com/in/ibitilabs/",
     telegram: "https://t.me/IBITIcoin_chat",
     x: "https://x.com/ibiticoin",
   };
