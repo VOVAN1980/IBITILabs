@@ -4,7 +4,7 @@
     subject: "IBITI Labs — Partnership / Integration",
     body: "Hi IBITI Labs,%0A%0A",
     linkedin: "https://www.linkedin.com/in/ibitilabs/",
-    telegram: "https://t.me/IBITIcoin_chat",
+    telegram: "https://t.me/IBITILabs_official",
     x: "https://x.com/ibiticoin",
   };
 
@@ -260,7 +260,7 @@
               <img src="img/ibiti-mark.png" alt="IBITI Labs">
              <h2 class="ibm-title" style="margin:0;">Get in touch</h2>
             </div>
-              <p class="ibm-subtitle">Pick a channel. Fastest: Telegram / X. Formal: Email / LinkedIn.</p>
+              <p class="ibm-subtitle">Pick a channel. News: Telegram / X. Formal: Email / LinkedIn.</p>
             </div>
             <button class="ibm-close" type="button" data-close="1" aria-label="Close">×</button>
           </div>
@@ -271,7 +271,7 @@
                 <div class="ibm-ico">${svg("tg")}</div>
                 <div class="ibm-ct">
                   <div class="ibm-card-title">Telegram</div>
-                  <div class="ibm-card-desc">Fastest response. Chat directly.</div>
+                  <div class="ibm-card-desc">Official channel. News and updates.</div>
                 </div>
               </a>
 
