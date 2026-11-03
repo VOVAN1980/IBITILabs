@@ -5,7 +5,7 @@
     body: "Hi IBITI Labs,%0A%0A",
     linkedin: "https://www.linkedin.com/in/ibitilabs/",
     telegram: "https://t.me/IBITILabs_official",
-    x: "https://x.com/ibiticoin",
+    x: "https://x.com/IBITILabs",
   };
 
   const enc = encodeURIComponent;

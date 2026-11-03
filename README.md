@@ -174,7 +174,7 @@ Technical discussions and collaboration proposals are welcome.
 ## Contact
 
 * **Email:** [info@ibiticoin.com](mailto:info@ibiticoin.com)
-* **X (Twitter):** [https://x.com/ibiticoin](https://x.com/ibiticoin)
+* **X (Twitter):** [https://x.com/IBITILabs](https://x.com/IBITILabs)
 * **Telegram:** [https://t.me/IBITIcoin_chat](https://t.me/IBITIcoin_chat)
 
 ---
