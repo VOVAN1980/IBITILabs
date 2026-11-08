@@ -48,18 +48,18 @@ We build the foundational security + execution primitives that autonomous system
 
 <img src="img/epk.png" alt="EPK" width="64" align="left" style="margin-right: 16px;">
 
-**EPK** is a permission & execution-control layer for smart accounts and autonomous agents.
+**EPK v2** — secure on-chain vaults for autonomous AI agents and trading bots: policy-enforced spending
+limits, isolated agent sessions, emergency controls and owner-controlled upgrades.
 
-It replaces unlimited approvals with deterministic policies:
+* **One vault per customer** — funds and calls come from the customer's own vault
+* **Spending limits and allowlists** — per asset, per time window, only to approved addresses
+* **Agent sessions** — short-lived, budgeted access for AI agents
+* **Guarded swaps** — DexGuard checks every trade against the Chainlink fair price
+* **Emergency stop and guardian veto**; upgrades only by the vault owner
 
-* **Granular spend limits** (per-tx and rolling windows)
-* **Target allowlists / selectors** (call only what you permit)
-* **Time-bounded permissions** (TTL-based access)
-* **Instant revocation** (panic switch / kill permissions)
+Status: **preview on BSC Testnet, not audited, not on mainnet.**
 
-Designed for **institutional-grade safety** and practical integration.
-
-🔗 **Repo:** [ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core) · **DoraHacks:** [BUIDL #39567](https://dorahacks.io/buidl/39567/)
+🔗 **Repo:** [ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core) · **SDK:** [`@ibiti/epk-sdk`](https://www.npmjs.com/package/@ibiti/epk-sdk) · **DoraHacks:** [BUIDL #39567](https://dorahacks.io/buidl/39567/)
 
 ---
 
@@ -127,7 +127,7 @@ IBITI Labs introduces a **permission-first execution architecture** where autono
 | Module | Link |
 |--------|------|
 | 🌐 **IBITI Labs** (umbrella) | [vovan1980.github.io/IBITILabs](https://vovan1980.github.io/IBITILabs/) |
-| 🧠 **EPK v1** (docs) | [vovan1980.github.io/ibiti-epk-core](https://vovan1980.github.io/ibiti-epk-core/) |
+| 🧠 **EPK** (site & public proof) | [vovan1980.github.io/ibiti-epk-core](https://vovan1980.github.io/ibiti-epk-core/) |
 | 🛡️ **IBITI Guardian** (repo) | [github.com/VOVAN1980/ibiti-guardian](https://github.com/VOVAN1980/ibiti-guardian) |
 | 🦁 **DrainShield** (landing) | [vovan1980.github.io/drainshield](https://vovan1980.github.io/drainshield/) |
 | 💱 **IBITIcoin** | [ibiticoin.com](https://www.ibiticoin.com) |
