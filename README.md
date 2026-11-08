@@ -54,7 +54,7 @@ limits, isolated agent sessions, emergency controls and owner-controlled upgrade
 * **One vault per customer** — funds and calls come from the customer's own vault
 * **Spending limits and allowlists** — per asset, per time window, only to approved addresses
 * **Agent sessions** — short-lived, budgeted access for AI agents
-* **Guarded swaps** — DexGuard checks every trade against the Chainlink fair price
+* **Guarded swaps** — DexGuard checks each guarded trade against the Chainlink fair price
 * **Emergency stop and guardian veto**; upgrades only by the vault owner
 
 Status: **preview on BSC Testnet, not audited, not on mainnet.**
@@ -73,7 +73,7 @@ Status: **preview on BSC Testnet, not audited, not on mainnet.**
 * 🛡️ **Heuristic Policy Engine** — per-tx limits, daily budgets, price impact guards
 * 🧪 **SandboxGuard** — pre-flight RPC simulation for Web3 transactions
 * 📊 **CEX Trading** — spot market orders on MEXC, OKX, Gate.io, Binance
-* 🔐 **EPK Integration** — on-chain permission enforcement (testnet live)
+* 🔐 **EPK policies** — spend limits and target rules enforced in the app (on-chain EPK: testnet only)
 * 🤖 **Autonomous Trading** — policy engine ready, bot activation in Phase 2
 
 🔗 **Repo:** [ibiti-guardian](https://github.com/VOVAN1980/ibiti-guardian)
@@ -148,7 +148,7 @@ IBITI Labs introduces a **permission-first execution architecture** where autono
 | Module | Status |
 |--------|--------|
 | **IBITIcoin** | ✅ Live on BNB Chain |
-| **EPK** | ✅ Validated on testnet |
+| **EPK** | 🧪 Preview on BSC Testnet, not audited |
 | **IBITI Guardian** | ✅ MVP — voice AI, CEX trading, policy engine |
 | **DrainShield** | 🚧 In development |
 | **Pilot integrations** | 🔄 In progress |
