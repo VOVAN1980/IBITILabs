@@ -57,9 +57,9 @@ limits, isolated agent sessions, emergency controls and owner-controlled upgrade
 * **Guarded swaps** — DexGuard checks each guarded trade against the Chainlink fair price
 * **Emergency stop and guardian veto**; upgrades only by the vault owner
 
-Status: **preview on BSC Testnet, not audited, not on mainnet.**
+Status: **preview on BSC Testnet and opBNB Testnet, not audited, not on mainnet.**
 
-🔗 **Repo:** [ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core) · **SDK:** [`@ibiti/epk-sdk`](https://www.npmjs.com/package/@ibiti/epk-sdk) · **DoraHacks:** [BUIDL #39567](https://dorahacks.io/buidl/39567/)
+🔗 **Repo:** [ibiti-epk-core](https://github.com/VOVAN1980/ibiti-epk-core) · **SDK:** [`sdk/` in the repo](https://github.com/VOVAN1980/ibiti-epk-core/tree/master/sdk) · **DoraHacks:** [BUIDL #39567](https://dorahacks.io/buidl/39567/)
 
 ---
 
@@ -148,7 +148,7 @@ IBITI Labs introduces a **permission-first execution architecture** where autono
 | Module | Status |
 |--------|--------|
 | **IBITIcoin** | ✅ Live on BNB Chain |
-| **EPK** | 🧪 Preview on BSC Testnet, not audited |
+| **EPK** | 🧪 Preview on BSC Testnet and opBNB Testnet, not audited |
 | **IBITI Guardian** | ✅ MVP — voice AI, CEX trading, policy engine |
 | **DrainShield** | 🚧 In development |
 | **Pilot integrations** | 🔄 In progress |
