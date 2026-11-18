@@ -26,15 +26,15 @@
     style.textContent = `
       #ibitiContactModal {
         position: fixed; inset: 0; z-index: 999999;
-        display: grid; place-items: center;
-        opacity: 0; pointer-events: none;
-        transition: opacity .35s ease;
+        display: grid; overflow-y: auto; padding: 16px 0;
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transition: opacity .35s ease, visibility 0s linear .35s;
         font-family: 'Inter', sans-serif;
       }
-      #ibitiContactModal.show { opacity: 1; pointer-events: auto; }
+      #ibitiContactModal.show { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .35s ease; }
 
       .ibm-backdrop {
-        position: absolute; inset: 0;
+        position: fixed; inset: 0;
         background: rgba(1,3,8,0.72);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
@@ -42,6 +42,7 @@
 
       .ibm-shell {
         position: relative;
+        margin: auto;
         width: min(920px, calc(100vw - 32px));
         border-radius: 28px;
         padding: 1px; /* градиентная рамка */
@@ -74,7 +75,7 @@
         font-size: 12px;
         letter-spacing: .26em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.45);
+        color: rgba(255,255,255,0.6);
       }
       .ibm-title {
         margin: 10px 0 8px 0;
@@ -181,7 +182,11 @@
       }
 
       .ibm-email { grid-column: 1 / -1; }
-      @media (max-width: 820px) { .ibm-email { grid-column: auto; } }
+      @media (max-width: 820px) {
+        .ibm-email { grid-column: auto; }
+        .ibm-email-top { flex-direction: column; }
+        .ibm-email-addr { white-space: normal; overflow-wrap: anywhere; }
+      }
 
       .ibm-email-top {
         display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
@@ -222,7 +227,7 @@
         font-size: 12px;
         letter-spacing: .18em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.45);
+        color: rgba(255,255,255,0.6);
       }
     `;
     document.head.appendChild(style);
@@ -248,6 +253,9 @@
 
     const root = document.createElement("div");
     root.id = "ibitiContactModal";
+    root.setAttribute("role", "dialog");
+    root.setAttribute("aria-modal", "true");
+    root.setAttribute("aria-labelledby", "ibmTitle");
     root.innerHTML = `
       <div class="ibm-backdrop" data-close="1"></div>
       <div class="ibm-shell">
@@ -257,8 +265,8 @@
               <div class="ibm-kicker">CONTACT</div>
 
               <div class="ibm-brand">
-              <img src="img/ibiti-mark.png" alt="IBITI Labs">
-             <h2 class="ibm-title" style="margin:0;">Get in touch</h2>
+              <img src="img/ibiti-mark.png" alt="">
+             <h2 class="ibm-title" id="ibmTitle" style="margin:0;">Get in touch</h2>
             </div>
               <p class="ibm-subtitle">Pick a channel. News: Telegram / X. Formal: Email / LinkedIn.</p>
             </div>
@@ -287,7 +295,7 @@
                 <div class="ibm-ico">${svg("in")}</div>
                 <div class="ibm-ct">
                   <div class="ibm-card-title">LinkedIn</div>
-                  <div class="ibm-card-desc">Official profile / partnerships.</div>
+                  <div class="ibm-card-desc">Founder profile / partnerships.</div>
                 </div>
               </a>
 
@@ -332,12 +340,17 @@
     });
   }
 
+  let lastFocus = null;
+
   function openModal() {
     injectStyles();
     injectModal();
     const m = document.getElementById("ibitiContactModal");
+    lastFocus = document.activeElement;
     m.classList.add("show");
     document.body.style.overflow = "hidden";
+    const close = m.querySelector(".ibm-close");
+    if (close) close.focus();
   }
 
   function closeModal() {
@@ -345,6 +358,7 @@
     if (!m) return;
     m.classList.remove("show");
     document.body.style.overflow = "";
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
   }
 
   function wireUp() {
@@ -372,7 +386,16 @@
 
     window.addEventListener("keydown", (e) => {
       const m = document.getElementById("ibitiContactModal");
-      if (m && m.classList.contains("show") && e.key === "Escape") closeModal();
+      if (!m || !m.classList.contains("show")) return;
+      if (e.key === "Escape") { closeModal(); return; }
+      if (e.key !== "Tab") return;
+      // keep keyboard focus inside the open dialog
+      const items = [...m.querySelectorAll("a[href], button")];
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!m.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
     });
   }
 
