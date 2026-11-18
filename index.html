@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBITI Labs | The Foundation of On-Chain Autonomy</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <meta name="description" content="IBITI Labs builds wallet security and on-chain autonomy: EPK agent vaults, IBITI Guardian, IBITI Guardian for Chrome, DrainShield, LVS and the IBITIcoin token.">
+    <link rel="canonical" href="https://vovan1980.github.io/IBITILabs/">
+    <meta name="theme-color" content="#010308">
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="IBITI Labs">
+    <meta property="og:url" content="https://vovan1980.github.io/IBITILabs/">
+    <meta property="og:title" content="IBITI Labs | The Foundation of On-Chain Autonomy">
+    <meta property="og:description" content="Wallet security and on-chain autonomy: EPK agent vaults, IBITI Guardian, IBITI Guardian for Chrome, DrainShield, LVS and IBITIcoin.">
+    <meta property="og:image" content="https://vovan1980.github.io/IBITILabs/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IBITILabs">
+
+    <!-- Tailwind CSS (version pinned so a CDN update cannot change the look) -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
     <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -36,7 +53,7 @@
         }
         .loader-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
+            font-size: clamp(1.75rem, 9vw, 3rem);
             font-weight: 800;
             letter-spacing: 0.3em;
             color: #fff;
@@ -44,7 +61,7 @@
             text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
         }
         .progress-container {
-            width: 400px;
+            width: min(400px, 80vw);
             height: 3px;
             background: rgba(255,255,255,0.05);
             position: relative;
@@ -54,8 +71,8 @@
 
            /* ===== PRELOADER LOGO ===== */
 .loader-logo {
-  width: 340px;
-  height: 340px;
+  width: min(340px, 70vw);
+  height: min(340px, 70vw);
   margin-bottom: 1.6rem;
   filter: drop-shadow(0 0 22px rgba(245,158,11,0.35));
   animation: logoPulse 2.2s ease-in-out infinite;
@@ -151,6 +168,7 @@
         .nebula-blue { background: #38bdf8; }
         .nebula-purple { background: #a855f7; }
         .nebula-gold { background: #f59e0b; }
+        .nebula-cyan { background: #22d3ee; }
 
         @keyframes breathe {
             0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.1; }
@@ -189,12 +207,8 @@
         }
         .product-wrapper:hover::before { opacity: 0.4; }
 
-        .aura-blue { background: radial-gradient(circle, #38bdf8 0%, transparent 70%); }
-        .aura-purple { background: radial-gradient(circle, #a855f7 0%, transparent 70%); }
-        .aura-gold { background: radial-gradient(circle, #f59e0b 0%, transparent 70%); }
-
         .glass-card {
-            background: rgba(15, 23, 42, 0.3);
+            background: rgba(15, 23, 42, 0.45);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -225,83 +239,6 @@
 
         .card-content { position: relative; z-index: 2; }
 
-        /* ===== Contact modal (safe, isolated) ===== */
-#contactModalRoot { position: fixed; inset: 0; z-index: 999999; display: none; }
-#contactModalRoot.show { display: block; }
-#contactModalRoot .cm-backdrop { position:absolute; inset:0; background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); }
-#contactModalRoot .cm-wrap { position:relative; min-height:100%; display:flex; align-items:center; justify-content:center; padding: 24px; }
-#contactModalRoot .cm-dialog {
-  width: 100%;
-  max-width: 980px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(5,7,15,0.92);
-  box-shadow: 0 40px 140px rgba(0,0,0,0.85);
-  overflow: hidden;
-}
-#contactModalRoot .cm-inner { padding: 32px 34px; }
-#contactModalRoot .cm-top { display:flex; align-items:flex-start; justify-content:space-between; gap: 18px; }
-#contactModalRoot .cm-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-#contactModalRoot .cm-title { font-family: 'Space Grotesk', sans-serif; font-size: 46px; line-height: 1.06; font-weight: 800; margin-top: 10px; }
-#contactModalRoot .cm-sub { margin-top: 14px; color: rgba(255,255,255,0.55); font-size: 18px; line-height: 1.6; }
-#contactModalRoot .cm-close { background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 34px; line-height: 1; cursor: pointer; }
-#contactModalRoot .cm-close:hover { color: rgba(255,255,255,1); }
-
-#contactModalRoot .cm-grid { margin-top: 26px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-@media (min-width: 768px){ #contactModalRoot .cm-grid { grid-template-columns: 1fr 1fr; } }
-
-#contactModalRoot .cm-tile{
-  display:block;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(15,23,42,0.22);
-  border-radius: 22px;
-  padding: 18px 18px;
-  text-decoration: none;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, background .35s;
-}
-#contactModalRoot .cm-tile:hover{
-  transform: translateY(-6px);
-  border-color: rgba(255,255,255,0.22);
-  background: rgba(15,23,42,0.32);
-}
-#contactModalRoot .cm-tile .t{ font-weight: 800; font-size: 20px; color: rgba(255,255,255,0.92); }
-#contactModalRoot .cm-tile .d{ margin-top: 6px; color: rgba(255,255,255,0.55); }
-
-#contactModalRoot .cm-emailbox .d { margin-bottom: 12px; }
-#contactModalRoot .cm-btn{
-  width: 100%;
-  text-align: left;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  padding: 12px 14px;
-  border-radius: 999px;
-  color: rgba(255,255,255,0.9);
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform .25s, border-color .25s, background .25s;
-}
-#contactModalRoot .cm-btn:hover{
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.26);
-  background: rgba(255,255,255,0.10);
-}
-#contactModalRoot .cm-toast{
-  margin-top: 10px;
-  display:none;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: rgba(255,255,255,0.55);
-}
-#contactModalRoot .cm-foot{
-  padding: 16px 34px;
-  border-top: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.45);
-  font-size: 13px;
-}
-
 .ibm-brand {
   display: inline-flex;
   align-items: center;
@@ -322,7 +259,15 @@
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(245,158,11,.28)); opacity: .95; }
   50%      { transform: scale(1.06); filter: drop-shadow(0 0 26px rgba(245,158,11,.55)); opacity: 1; }
 }
+
+        /* Visitors who ask the system for less motion get a calm page */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; }
+            .section-nebula, .loader-logo, .loader-logo img, .text-gradient-animated, .ibm-brand img, #progress-bar { animation: none; }
+        }
     </style>
+    <!-- Without JavaScript the preloader would cover the page forever -->
+    <noscript><style>#preloader{display:none}.reveal{opacity:1;transform:none}#navbar img,footer img{width:64px;height:64px}a svg,button svg{width:24px;height:24px}img{max-width:100%;height:auto}a{color:#7dd3fc}</style></noscript>
 </head>
 <body class="selection:bg-sky-500 selection:text-white">
 
@@ -334,7 +279,7 @@
 
     <div class="loader-title">IBITI LABS</div>
     <div class="progress-container"><div id="progress-bar"></div></div>
-    <div id="progress-text">SYS.BOOT[ 0% ]</div>
+    <div id="progress-text">SYS.BOOT [ 0% ]</div>
 </div>
 
     <!-- ЖИВАЯ ПАУТИНА (CANVAS) -->
@@ -343,15 +288,15 @@
 
     <!-- НАВИГАЦИЯ -->
 <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
-  <div class="max-w-[90rem] mx-auto px-8 h-24 flex items-center justify-between">
+  <div class="max-w-[90rem] mx-auto px-4 md:px-8 h-24 flex items-center justify-between gap-3">
 
-    <a href="#" class="flex items-center gap-4 heading-font group">
+    <a href="#" class="flex items-center gap-2 md:gap-4 heading-font group">
       <img
         src="./img/ibiti-mark.png"
-        alt="IBITI Labs"
-        class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_26px_rgba(245,158,11,0.45)] group-hover:scale-110 transition-transform"
+        alt=""
+        class="w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-[0_0_26px_rgba(245,158,11,0.45)] group-hover:scale-110 transition-transform"
       />
-      <span class="text-3xl font-bold tracking-tighter">
+      <span class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter whitespace-nowrap">
         IBITI <span class="text-white/40 font-light">Labs</span>
       </span>
     </a>
@@ -362,7 +307,7 @@
       <a href="#partner" class="hover:text-white transition-colors">Partners</a>
     </div>
 
-    <a href="#partner" class="px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+    <a href="#partner" class="px-5 py-2 text-sm md:px-8 md:py-3 md:text-base whitespace-nowrap rounded-full border border-white/20 text-white font-medium hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
       Join Network
     </a>
 
@@ -383,7 +328,7 @@
             </h1>
             
             <p class="text-2xl md:text-3xl text-white/50 mb-16 max-w-4xl mx-auto font-light leading-relaxed">
-                We build the immutable security layers, deterministic execution engines, and transparent assets that power the next era of DeFi.
+                We build the on-chain security layers, deterministic execution engines, and transparent assets that power the next era of DeFi.
             </p>
             
             <a href="#ecosystem" class="inline-flex items-center gap-4 px-12 py-5 rounded-full bg-white text-black font-bold text-xl hover:scale-105 transition-transform duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]">
@@ -406,7 +351,7 @@
                         Application developers should focus on creating amazing products, not on building foundational security from scratch.
                     </p>
                     <p class="text-2xl text-white/60 leading-relaxed font-light">
-                        We don't build trading bots. We build the <strong class="text-white font-medium">secure operating system</strong> that prevents AI from going rogue. We create the robust mechanics that fuel liquidity. We lay the concrete.
+                        We don't build trading bots. We build the <strong class="text-white font-medium">secure operating system</strong> that keeps AI inside the limits its owner sets. We lay the concrete.
                     </p>
                 </div>
             </div>
@@ -424,14 +369,14 @@
                 <!-- КАРТОЧКА СЛЕВА -->
                 <div class="w-full lg:w-5/12 reveal">
                     <a href="https://vovan1980.github.io/ibiti-epk-core/" target="_blank" rel="noopener" class="product-wrapper" style="background: #38bdf8;" onmousemove="handleMouseMove(event, this)">
-                        <div class="glass-card p-14 flex flex-col justify-between">
+                        <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
                             <div class="w-24 h-24 rounded-3xl bg-sky-500/10 flex items-center justify-center border border-sky-500/30 mb-12 shadow-[0_0_30px_rgba(56,189,248,0.25)]">
                               <img src="./img/epk.png" alt="EPK" class="w-24 h-24 object-contain">
                              </div>
                             <div class="card-content">
-                                <h4 class="text-5xl font-bold text-white mb-4">IBITI EPK</h4>
-                                <p class="text-lg text-white/40 mb-4">Agent Vault &middot; live on BSC Testnet and opBNB Testnet</p>
-                                <div class="text-sky-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                                <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">IBITI EPK</h4>
+                                <p class="text-lg text-white/90 mb-4">Agent Vault &middot; live on BSC Testnet and opBNB Testnet</p>
+                                <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
                                     See the live proof <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
                             </div>
@@ -442,15 +387,15 @@
                 <!-- ТЕКСТ СПРАВА -->
                 <div class="w-full lg:w-7/12 reveal delay-200">
                     <div class="text-sky-400 mono-font text-base uppercase tracking-widest mb-6">Security Module</div>
-                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Eternal Permission Kernel.</h3>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">Eternal Permission Kernel.</h3>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
                         Secure on-chain vaults for autonomous AI agents: <strong class="text-white/80">policy-enforced spending limits, isolated agent sessions, emergency controls and owner-controlled upgrades</strong>. Every customer gets their own vault &mdash; if the server, the operator key or the agent itself is compromised, the attacker is still held to its limits and its allowlist.
                     </p>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
-                        Guardians can freeze everything in one transaction, every loosening waits in a timelock they can veto, the Watchtower cancels changes the owner never planned, and in an emergency the owner moves everything to a cold wallet registered in advance. On BSC Testnet (release 2.3.0): <strong class="text-white/80">9 of 9</strong> attacks rejected, <strong class="text-white/80">0</strong> tokens moved, a stolen admin key's change cancelled <strong class="text-white/80">9 blocks</strong> later. On opBNB Testnet, with the same code: <strong class="text-white/80">9 of 9</strong> attacks rejected, the stolen key's change cancelled <strong class="text-white/80">21 blocks</strong> (about 5 seconds) later, and <strong class="text-white/80">12 of 12</strong> attacks on guarded PancakeSwap trades rejected &mdash; every claim re-checkable on-chain.
+                        Guardians can freeze everything in one transaction, every loosening waits in a timelock they can veto, the Watchtower cancels changes the owner never planned, and in an emergency the owner moves everything to a cold wallet registered in advance. On BSC Testnet (release 2.3.0): <strong class="text-white/80">9 of 9</strong> attacks rejected, <strong class="text-white/80">0</strong> tokens moved, a stolen admin key's change cancelled <strong class="text-white/80">9 blocks</strong> later. On opBNB Testnet, with the same code: <strong class="text-white/80">9 of 9</strong> attacks rejected, the stolen key's change cancelled <strong class="text-white/80">21 blocks</strong> (about 5 seconds) later, and <strong class="text-white/80">12 of 12</strong> attacks rejected in the guard demo on the real PancakeSwap router &mdash; every claim re-checkable on-chain.
                     </p>
-                    <p class="text-base text-white/40 mono-font uppercase tracking-widest">
-                        Live on BSC Testnet and opBNB Testnet &middot; independent audit next &middot; mainnet only after the audit
+                    <p class="text-base text-white/50 mono-font uppercase tracking-widest">
+                        Live on BSC Testnet and opBNB Testnet &middot; not audited yet &middot; mainnet only after an independent audit
                     </p>
                 </div>
             </div>
@@ -464,14 +409,14 @@
                 <!-- КАРТОЧКА СПРАВА -->
               <div class="w-full lg:w-5/12 reveal">
                <a href="https://vovan1980.github.io/ibiti-guardian/" target="_blank" rel="noopener" class="product-wrapper" style="background: #a855f7;" onmousemove="handleMouseMove(event, this)">
-                <div class="glass-card p-14 flex flex-col justify-between">
+                <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
                   <div class="w-24 h-24 rounded-3xl bg-purple-500/10 flex items-center justify-center border border-purple-500/30 mb-12 shadow-[0_0_30px_rgba(168,85,247,0.2)] overflow-hidden">
                        <img src="./img/guardian.png" alt="IBITI Guardian" class="w-full h-full object-cover">
                      </div>
                      <div class="card-content">
-                      <h4 class="text-5xl font-bold text-white mb-4">IBITI Guardian</h4>
-                      <p class="text-lg text-white/40 mb-4">AI-Powered Voice Wallet &amp; CEX Guard</p>
-                          <div class="text-purple-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                      <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">IBITI Guardian</h4>
+                      <p class="text-lg text-white/90 mb-4">AI-Powered Voice Wallet &amp; CEX Guard</p>
+                          <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
                               Visit Site <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                           </div>
                        </div>
@@ -482,9 +427,9 @@
                 <!-- ТЕКСТ СЛЕВА -->
                 <div class="w-full lg:w-7/12 reveal delay-200">
                     <div class="text-purple-400 mono-font text-base uppercase tracking-widest mb-6">Execution Module</div>
-                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Autonomous Ecosystem.</h3>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">Autonomous Ecosystem.</h3>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
-                        The future of DeFi and gaming is agent-driven. <strong class="text-white/80">IBITI Guardian</strong> is our first live application &mdash; an AI-powered crypto wallet with voice commands, policy-protected execution, and multi-exchange trading.
+                        The future of DeFi and gaming is agent-driven. <strong class="text-white/80">IBITI Guardian</strong> is our mobile AI wallet &mdash; voice commands, policy-protected execution, and multi-exchange trading. A public Android build is coming soon.
                     </p>
                     <p class="text-2xl text-white/50 font-light leading-relaxed">
                         Guarded by EPK policies &mdash; spend limits, target guards and threat blocklists checked before every transaction &mdash; these applications show what is possible when intelligence works inside strict, owner-defined limits.
@@ -493,23 +438,23 @@
             </div>
         </div>
 
-        <!-- MODULE 2B: DRAINSHIELD -->
+        <!-- MODULE 2A: GUARDIAN FOR CHROME -->
         <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
-            <div class="section-nebula nebula-purple"></div>
+            <div class="section-nebula nebula-cyan"></div>
             <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
-                
+
                 <!-- КАРТОЧКА СЛЕВА -->
                 <div class="w-full lg:w-5/12 reveal">
-                    <a href="https://vovan1980.github.io/drainshield/" target="_blank" rel="noopener" class="product-wrapper" style="background: #a855f7;" onmousemove="handleMouseMove(event, this)">
-                        <div class="glass-card p-14 flex flex-col justify-between">
-                            <div class="w-24 h-24 rounded-3xl bg-purple-500/10 flex items-center justify-center border border-purple-500/30 mb-12 shadow-[0_0_30px_rgba(168,85,247,0.2)] overflow-hidden">
-                                <img src="./img/drainshield-lion.png" alt="DrainShield" class="w-full h-full object-cover">
+                    <a href="https://ibiti-guardian-chrome.web.app/" target="_blank" rel="noopener" class="product-wrapper" style="background: #22d3ee;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/30 mb-12 shadow-[0_0_30px_rgba(34,211,238,0.2)] overflow-hidden">
+                                <img src="./img/guardian-chrome.png" alt="IBITI Guardian for Chrome" class="w-full h-full object-cover">
                             </div>
                             <div class="card-content">
-                                <h4 class="text-5xl font-bold text-white mb-4">DrainShield</h4>
-                                <p class="text-lg text-white/40 mb-4">Wallet Security &amp; Link Checker</p>
-                                <div class="text-purple-400 font-bold text-xl tracking-wide flex items-center mt-6">
-                                    Open App <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">Guardian for Chrome</h4>
+                                <p class="text-lg text-white/90 mb-4">Browser Extension &middot; Live Demo, No Install</p>
+                                <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
+                                    Try It Live <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
                             </div>
                         </div>
@@ -518,35 +463,38 @@
 
                 <!-- ТЕКСТ СПРАВА -->
                 <div class="w-full lg:w-7/12 reveal delay-200">
-                    <div class="text-purple-400 mono-font text-base uppercase tracking-widest mb-6">Security Agent</div>
-                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Active Wallet Defense.</h3>
+                    <div class="text-cyan-400 mono-font text-base uppercase tracking-widest mb-6">Browser Security</div>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">Know What You Sign.</h3>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
-                        Scan wallet approvals, detect dangerous permissions, and check any URL for phishing threats. DrainShield builds a community threat database and provides instant reputation verdicts for every link.
+                        Wallet drainers rarely hack anything &mdash; they ask you to sign. <strong class="text-white/80">IBITI Guardian for Chrome</strong> holds every request to sign or send before your wallet sees it, decodes it into plain facts, and shows what the button you pressed said against what the request really does.
                     </p>
-                    <p class="text-2xl text-white/50 font-light leading-relaxed">
-                        Available on Google Play. Non-custodial, wallet-signed transactions only.
+                    <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
+                        Gemini Nano reads the request on your own computer; Gemini in the cloud only if you allow it. Code checks every AI answer and decides the risk level. Then you decide: <strong class="text-white/80">Reject</strong> or <strong class="text-white/80">Continue</strong>.
+                    </p>
+                    <p class="text-base text-white/50 mono-font uppercase tracking-widest">
+                        Chrome extension &middot; open source &middot; <a href="https://github.com/VOVAN1980/ibiti-guardian-chrome" target="_blank" rel="noopener" class="text-cyan-400/80 hover:text-white transition-colors">GitHub</a> &middot; <a href="https://youtu.be/ruqmaL30ZmU" target="_blank" rel="noopener" class="text-cyan-400/80 hover:text-white transition-colors">Video</a>
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- MODULE 2C: LVS -->
+        <!-- MODULE 2B: DRAINSHIELD -->
         <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
-            <div class="section-nebula nebula-blue"></div>
+            <div class="section-nebula nebula-purple"></div>
             <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row-reverse items-center gap-24 relative z-10">
 
                 <!-- КАРТОЧКА СПРАВА -->
                 <div class="w-full lg:w-5/12 reveal">
-                    <a href="https://lvs.network/" target="_blank" rel="noopener" class="product-wrapper" style="background: #38bdf8;" onmousemove="handleMouseMove(event, this)">
-                        <div class="glass-card p-14 flex flex-col justify-between">
-                            <div class="w-24 h-24 rounded-3xl bg-sky-500/10 flex items-center justify-center border border-sky-500/30 mb-12 shadow-[0_0_30px_rgba(56,189,248,0.2)] overflow-hidden">
-                                <img src="./img/lvs.png" alt="LVS" class="w-full h-full object-cover">
+                    <a href="https://vovan1980.github.io/drainshield/" target="_blank" rel="noopener" class="product-wrapper" style="background: #a855f7;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-purple-500/10 flex items-center justify-center border border-purple-500/30 mb-12 shadow-[0_0_30px_rgba(168,85,247,0.2)] overflow-hidden">
+                                <img src="./img/drainshield-lion.png" alt="DrainShield" class="w-full h-full object-cover">
                             </div>
                             <div class="card-content">
-                                <h4 class="text-5xl font-bold text-white mb-4">LVS</h4>
-                                <p class="text-lg text-white/40 mb-4">Local Tasks &amp; Verified Proof</p>
-                                <div class="text-sky-400 font-bold text-xl tracking-wide flex items-center mt-6">
-                                    Open App <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">DrainShield</h4>
+                                <p class="text-lg text-white/90 mb-4">Wallet Security &amp; Link Checker</p>
+                                <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
+                                    Visit Site <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
                             </div>
                         </div>
@@ -555,13 +503,50 @@
 
                 <!-- ТЕКСТ СЛЕВА -->
                 <div class="w-full lg:w-7/12 reveal delay-200">
+                    <div class="text-purple-400 mono-font text-base uppercase tracking-widest mb-6">Security Agent</div>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">Active Wallet Defense.</h3>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
+                        Scan wallet approvals, detect dangerous permissions, and check any URL for phishing threats. DrainShield builds a community threat database and provides instant reputation verdicts for every link.
+                    </p>
+                    <p class="text-2xl text-white/50 font-light leading-relaxed">
+                        Available on <a href="https://play.google.com/store/apps/details?id=app.drainshield.guard" target="_blank" rel="noopener" class="text-purple-400/80 hover:text-white transition-colors">Google Play</a>. Non-custodial, wallet-signed transactions only.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 2C: LVS -->
+        <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
+            <div class="section-nebula nebula-blue"></div>
+            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
+
+                <!-- КАРТОЧКА СЛЕВА -->
+                <div class="w-full lg:w-5/12 reveal">
+                    <a href="https://lvs.network/" target="_blank" rel="noopener" class="product-wrapper" style="background: #38bdf8;" onmousemove="handleMouseMove(event, this)">
+                        <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-sky-500/10 flex items-center justify-center border border-sky-500/30 mb-12 shadow-[0_0_30px_rgba(56,189,248,0.2)] overflow-hidden">
+                                <img src="./img/lvs.png" alt="LVS" class="w-full h-full object-cover">
+                            </div>
+                            <div class="card-content">
+                                <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">LVS</h4>
+                                <p class="text-lg text-white/90 mb-4">Local Tasks &amp; Verified Proof</p>
+                                <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
+                                    Visit Site <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ТЕКСТ СПРАВА -->
+                <div class="w-full lg:w-7/12 reveal delay-200">
                     <div class="text-sky-400 mono-font text-base uppercase tracking-widest mb-6">Real-World Network</div>
-                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">Proof of Real Work.</h3>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">Proof of Real Work.</h3>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
                         LVS connects people who need something done nearby with people ready to do it. Results are captured by the LVS camera with time and GPS attached, and disputes are settled by a built-in judge.
                     </p>
                     <p class="text-2xl text-white/50 font-light leading-relaxed">
-                        Paid in VU, pegged 1:1 to USDT and USDC. Android, Windows and Telegram.
+                        Paid in VU, pegged 1:1 to USDT and USDC. In test mode on Android, Windows and Telegram.
                     </p>
                 </div>
             </div>
@@ -571,18 +556,19 @@
         <!-- MODULE 3: TOKEN -->
         <div class="relative py-48 px-6 border-t border-white/5 overflow-hidden">
             <div class="section-nebula nebula-gold"></div>
-            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
-                
-                <!-- КАРТОЧКА СЛЕВА -->
+            <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row-reverse items-center gap-24 relative z-10">
+
+                <!-- КАРТОЧКА СПРАВА -->
                 <div class="w-full lg:w-5/12 reveal">
                     <a href="https://www.ibiticoin.com" target="_blank" rel="noopener" class="product-wrapper" style="background: #f59e0b;" onmousemove="handleMouseMove(event, this)">
-                        <div class="glass-card p-14 flex flex-col justify-between">
-                            <div class="w-24 h-24 rounded-3xl bg-amber-500/10 flex items-center justify-center border border-amber-500/30 mb-12 shadow-[0_0_30px_rgba(245,158,11,0.25)]">
-                               <img src="./img/ibiti-token.png" alt="IBITI Token" class="w-24 h-24 object-contain">
+                        <div class="glass-card p-8 sm:p-14 flex flex-col justify-between">
+                            <div class="w-24 h-24 rounded-3xl bg-amber-500/10 flex items-center justify-center border border-amber-500/30 mb-12 shadow-[0_0_30px_rgba(245,158,11,0.25)] overflow-hidden">
+                               <img src="./img/ibiti-token.png" alt="IBITI Token" class="w-full h-full object-cover">
                                </div>
                             <div class="card-content">
-                                <h4 class="text-5xl font-bold text-white mb-4">IBITI Token</h4>
-                                <div class="text-amber-400 font-bold text-xl tracking-wide flex items-center mt-6">
+                                <h4 class="text-4xl sm:text-5xl font-bold text-white mb-4">IBITI Token</h4>
+                                <p class="text-lg text-white/90 mb-4">IBITIcoin (IBITI) &middot; BEP-20 on BNB Smart Chain</p>
+                                <div class="text-white font-bold text-xl tracking-wide flex items-center mt-6">
                                     Access Portal <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
                             </div>
@@ -590,15 +576,15 @@
                     </a>
                 </div>
 
-                <!-- ТЕКСТ СПРАВА -->
+                <!-- ТЕКСТ СЛЕВА -->
                 <div class="w-full lg:w-7/12 reveal delay-200">
                     <div class="text-amber-400 mono-font text-base uppercase tracking-widest mb-6">Utility Module</div>
-                    <h3 class="text-6xl lg:text-7xl font-bold mb-10">The Network Asset.</h3>
+                    <h3 class="text-[2.75rem] leading-none sm:text-6xl lg:text-7xl font-bold mb-10">The Network Asset.</h3>
                     <p class="text-2xl text-white/50 font-light leading-relaxed mb-8">
-                        The native utility and governance engine powering the broader network. Engineered on the BNB Smart Chain with a fixed, unmintable supply.
+                        The IBITI Labs utility token. Engineered on the BNB Smart Chain with a fixed, unmintable supply of 100,000,000 IBITI.
                     </p>
                     <p class="text-2xl text-white/50 font-light leading-relaxed">
-                        Designed with clean, transparent on-chain mechanics to provide deep liquidity and total alignment across all IBITI Labs modules.
+                        Designed with clean, transparent on-chain mechanics: the token contract has no owner, no fees and no upgrade path. IBITI staking is live on BNB Chain.
                     </p>
                 </div>
             </div>
@@ -620,32 +606,32 @@
       Contact Us
     </button>
 
-    <div class="mt-12 text-white/30 mono-font text-lg uppercase tracking-widest">
-      Direct: info@ibiticoin.com
+    <div class="mt-12 text-white/50 mono-font text-lg uppercase tracking-widest">
+      Direct: <a href="mailto:info@ibiticoin.com" class="hover:text-white transition-colors">info@ibiticoin.com</a>
     </div>
   </div>
 </section>
 
     <!-- FOOTER -->
 <footer class="border-t border-white/10 bg-[#000103] py-20 px-6 relative z-10">
-  <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+  <div class="max-w-[90rem] mx-auto flex flex-col lg:flex-row justify-between items-center gap-10">
 
     <div class="text-3xl font-bold tracking-tighter heading-font flex items-center gap-4">
       <img
         src="./img/ibiti-mark.png"
-        alt="IBITI Labs"
+        alt=""
         class="w-20 h-20 object-contain drop-shadow-[0_0_18px_rgba(245,158,11,0.35)]"
       />
       IBITI <span class="text-white/30">Labs</span>
     </div>
 
-    <div class="flex gap-12 text-lg">
-      <a href="https://x.com/IBITILabs" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-white transition-colors">X (Twitter)</a>
-      <a href="https://github.com/VOVAN1980" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-white transition-colors">GitHub</a>
-      <a href="https://t.me/IBITILabs_official" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-white transition-colors">Telegram</a>
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 md:gap-12 text-lg">
+      <a href="https://x.com/IBITILabs" target="_blank" rel="noopener noreferrer" class="text-white/60 hover:text-white transition-colors">X (Twitter)</a>
+      <a href="https://github.com/VOVAN1980" target="_blank" rel="noopener noreferrer" class="text-white/60 hover:text-white transition-colors">GitHub</a>
+      <a href="https://t.me/IBITILabs_official" target="_blank" rel="noopener noreferrer" class="text-white/60 hover:text-white transition-colors">Telegram</a>
     </div>
 
-    <div class="text-base text-white/30 mono-font uppercase tracking-widest">
+    <div class="text-base text-white/50 mono-font uppercase tracking-widest">
       &copy; 2026 IBITI Labs
     </div>
 
@@ -655,7 +641,10 @@
     <!-- ================= SCRIPTS ================= -->
     <script>
         /* --- 1. ПРЕЛОАДЕР --- */
-        window.addEventListener('load', () => {
+        let bootStarted = false;
+        function startBoot() {
+            if (bootStarted) return;
+            bootStarted = true;
             let progress = 0;
             const bar = document.getElementById('progress-bar');
             const text = document.getElementById('progress-text');
@@ -688,7 +677,9 @@
                     }, 500);
                 }
             }, 80);
-        });
+        }
+        window.addEventListener('load', startBoot);
+        setTimeout(startBoot, 5000); // fail-safe: never wait forever for a slow image or font
 
         /* --- 2. ПЛАВНЫЙ ВЫЕЗД ПРИ СКРОЛЛЕ --- */
         const revealObserver = new IntersectionObserver((entries) => {
@@ -735,7 +726,11 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', () => {
+            resize();
+            // with reduced motion there is no animation loop, so draw the background once more after a resize
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) animate();
+        });
         resize();
 
         class Particle {
@@ -812,7 +807,7 @@
                 p.draw();
             });
 
-            requestAnimationFrame(animate);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(animate);
         }
 
         animate();
